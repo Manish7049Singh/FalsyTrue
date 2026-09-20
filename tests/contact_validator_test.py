@@ -20,7 +20,24 @@ def test_is_valid_phone_true():
         result = is_valid_phone(phone)
         assert result == True
 
-# def test_mask_email_basic():
-#     email = "priya@example.com"
-#     result = mask_email(email)
-#     assert result == "pr***@example.com"
+def test_mask_email_basic():
+    email = "priya@example.com"
+    result = mask_email(email)
+    assert result == "pr***@example.com"
+    
+def test_is_valid_phone_type_error():
+    with pytest.raises(TypeError):
+        is_valid_phone(12345)
+
+
+def test_mask_email_short_name():
+    assert mask_email("ab@example.com") == "a*@example.com"
+
+
+def test_normalize_phone_valid():
+    assert normalize_phone("555-123-4567") == "5551234567"
+
+
+def test_normalize_phone_invalid():
+    with pytest.raises(ValueError):
+        normalize_phone("abc")
